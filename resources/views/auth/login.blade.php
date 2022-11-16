@@ -28,9 +28,8 @@
             </div>
             <div id="mySidenav" class="sidenav">
                 <a id="closeBtn" href="#" class="close">&times;</a>
-                <ul>
-                    <li><a href="#">Se connecter</a></li>
-                    @auth
+                <ul>@auth
+                    <li><a href="#">Se déconnecter</a></li>
                     <li><a href="#">Panier</a></li>
                     @endauth
                     <li><a href="#">Nous contacter</a></li>
@@ -45,18 +44,26 @@
                     <- Retour</p>
             </a>
         </div>
-        <div>
-            <h1>Veuillez vous connecter</h1>
-            <form action="" method="post">
-                @csrf
-                <input type="mail" name="mail">
-                <input type="password" name="password">
-                <input type="submit" value="valider">
-                <a href="/user/appendUsers">
-                    <p>Créer un compte</p>
-                </a>
-            </form>
-        </div>
+        <section>
+            <article class="body-login">
+                <div class="bc-login">
+                    <div>
+                        <p>Connection</p>
+                    </div>
+                    <div>
+                        <form action="" method="post" class="form-login">
+                            @csrf
+                            <input id="inp-mail" type="mail" name="mail" placeholder="Mail">
+                            <input id="inp-password" type="password" name="password" placeholder="Mot de passe">
+                            <input id="inp-valider" type="submit" value="Valider">
+                            <a href="/user/appendUsers">
+                                <p>Vous n'avez pas de compte?</p>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </section>
     </main>
 
     <script>
