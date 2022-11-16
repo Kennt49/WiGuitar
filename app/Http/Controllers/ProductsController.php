@@ -12,35 +12,30 @@ class ProductsController extends Controller
 {
     public function showProducts(int $index)
     {
-        $product = Products::where('id_products','=',$index)->firstOrFail();
-        /*echo $product->stock->nbr_products;*/
-        $stock = Stocks::where('id_stocks','=',$product->id_stocks)->firstOrFail();
-        $feature = Features::where('id_features','=',$product->id_features)->firstOrFail();
-        return view('product/showProducts',["products"=>$product, "stocks"=>$stock, "features"=>$feature]);
+        $product = Products::where('id_products', '=', $index)->firstOrFail();
+        return view('/product/showProducts', ["products" => $product]);
     }
 
     public function appendProducts()
     {
-    return view('product/appendProducts');
+        return view('product/appendProducts');
     }
 
     public function addProducts(Request $request)
     {
         $product = new Products();
-        $product->name=$request->get('name');
-        $product->description=$request->get('description');
-        $product->price=$request->get('price');
-        $product->id_stocks=$request->get('id_stocks');
-        $product->id_features=$request->get('id_features');
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->price = $request->get('price');
         $product->save();
         return view('product/confirmation');
     }
 
     public function editProducts(int $index)
     {
-        $product = Products::where('id_products','=',$index)->firstOrFail();
+        $product = Products::where('id_products', '=', $index)->firstOrFail();
         //si $product est vide (pas d'producte à l'index indiqué) une page 404 est automatiquement affiché
-        return view('product/editProducts',["products"=>$product]);
+        return view('product/editProducts', ["products" => $product]);
     }
 
     public function postEditProducts(request $request)

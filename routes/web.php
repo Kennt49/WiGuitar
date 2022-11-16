@@ -6,6 +6,7 @@ use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Page d'accueil Laravel
+Route::get('/', function () {
+    return view('Accueil');
+});
+
 Route::get('/Accueil', function () {
     return view('Accueil');
 });
@@ -82,6 +87,7 @@ Route::post('/order/edit', [OrdersController::class, 'postEditOrders']);
 //MODIFICATION DE LA TABLE PRODUCTS
 //Voir les touts les produits
 Route::get('/product/showProducts/{index}', [ProductsController::class, 'showProducts']);
+
 //Ajouter un produit
 Route::get('/product/appendProducts', [ProductsController::class, 'appendProducts']);
 Route::post('/product/addProduct', [ProductsController::class, 'addProducts']);
@@ -109,8 +115,11 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+//Pour authtification   
+Route::get('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/logout', [LoginController::class, 'logout']);
+});

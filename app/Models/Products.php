@@ -8,15 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     use HasFactory;
-    public $timestamps=false;
-    protected $table="products";
+    public $timestamps = false;
+    protected $table = "products";
     protected $primaryKey = 'id_products';
+
     public function stock()
     {
-        Return $this->hasOne(Stocks::class);
+        return $this->belongsTo(Stocks::class, 'id_products', 'id_stocks');
     }
+
     public function feature()
     {
-        Return $this->hasOne(Features::class);
+        return $this->belongsTo(Features::class, 'id_products', 'id_features');
     }
 }
