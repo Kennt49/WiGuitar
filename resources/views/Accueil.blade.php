@@ -35,7 +35,7 @@
         <ul>
           @auth
           <li><a href="/logout">Se déconnecter</a></li>
-          <li><a href="#">Panier</a></li>
+          <li><a href="/basket">Panier</a></li>
           </li>
           @else
           <li><a href="/login">Se connecter</a></li>

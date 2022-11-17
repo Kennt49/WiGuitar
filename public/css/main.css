@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 
+
+.element-basket {}
+
+.img-basket {}
+
+.info-basket {}
+
+
+
 /* color navbar */
 .navbar-light {
   background-color: #616c70;
