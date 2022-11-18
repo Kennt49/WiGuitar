@@ -125,4 +125,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout']);
 });
 
-Route::get('/basket', [BasketController::class, 'showBasket']);
+//voir le panier de l'utilisateur connecter
+Route::get('/basket', [BasketController::class, 'showBasket'])->name('basket');
+
+//Ajouter un produit au panier de l'utilisateur connecter
+Route::get('/basket/appendBasket/{index}', [BasketController::class, 'appendBasket']);

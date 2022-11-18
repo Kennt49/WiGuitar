@@ -29,11 +29,14 @@
       <div id="mySidenav" class="sidenav">
         <a id="closeBtn" href="#" class="close">&times;</a>
         <ul>
-          <li><a href="#">Se connecter</a></li>
           @auth
-          <li><a href="#">Panier</a></li>
+          <li><a href="/logout">Se déconnecter</a></li>
+          <li><a href="/basket">Panier</a></li>
+          </li>
+          @else
+          <li><a href="/login">Se connecter</a></li>
           @endauth
-          <li><a href="#">Nous contacter</a></li>
+          <li><a href="">Nous contacter</a></li>
         </ul>
       </div>
     </nav>
@@ -73,7 +76,9 @@
         @auth
         <div class="ajout-panier">
           <div class="btn-ajout-p">
-            <p>Ajouter au panier</p>
+            <a href="/basket/appendBasket/{{$products->id_products}}">
+              <p>Ajouter au panier</p>
+            </a>
           </div>
         </div>
         @endauth
