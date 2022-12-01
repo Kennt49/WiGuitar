@@ -20,24 +20,22 @@ class BasketController extends Controller
     public function appendBasket(int $idProduct)
     {
         // chercher si la guitare avec l'index idProduct est déjà dans le panier
-        $id_basket =  Auth::user()->basket->id;
-        var_dump($id_basket);
-        die;
-        $hold = Holds::where('id_products', $idProduct)->where('id_basket', 2)->first();
-        var_dump($hold);
-        return View('basket/confirmation');
-        die;
+        $hold = Holds::where('id_products', '=', $idProduct)->where('id_basket', '=', Auth::user()->id_basket)->first();
         if ($hold == null) {
             // si null ajoute la guitare dans le panier
             $basket = new Basket();
-            $basket->id_products = $idProduct;
             $basket->id_users = Auth::user()->id_users;
+            $hold = new Holds();
+            $hold->id_products = $idProduct;
+            $hold->id_basket = Auth::user()->basket->id;
+            $hold->quantity = 1;
             $basket->save();
+            $hold->save();
         } else {
             // sinon ajoute 1 à la quantité de guitare (quantity += 1;)
-            $basket->Qte += 1;
+            $hold->Qte += 1;
             // mettre à jour en base de donnée
-            $basket->save();
+            $hold->save();
         }
         return redirect()->route('basket');
     }
