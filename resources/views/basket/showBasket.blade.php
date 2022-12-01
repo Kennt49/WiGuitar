@@ -51,15 +51,18 @@
                     <- Retour</p>
             </a>
         </div>
-
+        @foreach ($basket->products as $product)
         <div class="element-basket">
             <div class="img-basket">
-                <img src="{{$basket->products[0]->image}}" alt="image guitare">
+                <img src="{{$product->image}}" alt="image guitare">
             </div>
             <div class="info-basket">
-                <p></p>
+                <p>{{$product->name}}</p>
+                <p>{{$product->stock->nbr_products}}</p>
+                <p>{{$product->price}}</p>
             </div>
         </div>
+        @endforeach
 
         <div class="btn-up">
             <a href="#up">

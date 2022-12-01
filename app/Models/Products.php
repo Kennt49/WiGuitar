@@ -21,4 +21,9 @@ class Products extends Model
     {
         return $this->belongsTo(Features::class, 'id_products', 'id_features');
     }
+
+    public function basket()
+    {
+        return $this->belongsToMany(Holds::class, 'holds', 'id_products', 'id_basket');
+    }
 }

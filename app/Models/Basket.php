@@ -15,7 +15,7 @@ class Basket extends Model
 
     public function products()
     {
-        return $this->hasMany(Products::class, 'id_products', 'id_basket');
+        return $this->belongsToMany(Products::class, 'holds', 'id_basket', 'id_products');
     }
 
     public function user()

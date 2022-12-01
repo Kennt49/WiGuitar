@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -42,7 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public $timestamps=false;
-    protected $table="users";
+    public $timestamps = false;
+    protected $table = "users";
     protected $primaryKey = 'id_users';
+
+    public function guitars()
+    {
+        return $this->hasMany(Basket::class, 'id_basket', 'id_users');
+    }
+
+    public function basket()
+    {
+        return $this->hasOne(Basket::class, 'id_users');
+    }
 }

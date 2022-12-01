@@ -110,13 +110,6 @@ Route::post('/user/edit', [USersController::class, 'postEditUsers']);
 //Créer un fichier pdf
 Route::get('create-pdf-file', [PDFController::class, 'index']);
 
-
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-
 //Pour authtification   
 Route::get('/login', [LoginController::class, 'login']);
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -125,8 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout']);
 });
 
-//voir le panier de l'utilisateur connecter
+//voir le panier de l'utilisateur connecté
 Route::get('/basket', [BasketController::class, 'showBasket'])->name('basket');
-
-//Ajouter un produit au panier de l'utilisateur connecter
+//Ajouter un produit au panier de l'utilisateur connecté
 Route::get('/basket/appendBasket/{index}', [BasketController::class, 'appendBasket']);

@@ -2,9 +2,15 @@
 
 
 
-.element-basket {}
+.element-basket {
+  width: 100%;
+  display: flex;
+}
 
-.img-basket {}
+.img-basket img {
+  width: 100px;
+  height: 109px;
+}
 
 .info-basket {}
 
